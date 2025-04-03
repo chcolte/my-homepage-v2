@@ -295,3 +295,123 @@
 .secondary { ... }
 .footer { ... }
 */
+
+/* --- ブログ詳細ページ用のスタイル --- */
+.articleMetaSingle {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.articleEyecatchSingle {
+  margin-bottom: 20px;
+  text-align: center; /* 画像を中央揃え */
+}
+
+.articleEyecatchSingle img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px; /* 少し角を丸める */
+}
+
+.metaItemsSingle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px; /* 縦横の隙間 */
+  font-size: 0.9em;
+  opacity: 0.9;
+  justify-content: center; /* 中央揃え */
+}
+
+/* .metaItem は共通スタイルを使用 */
+.metaItem .material-symbols-outlined {
+  font-size: 1.1em;
+  vertical-align: middle; /* アイコンとテキストの縦位置調整 */
+  margin-right: 3px; /* アイコンとテキストの間のスペース */
+}
+
+.postContent {
+  margin-top: 40px;
+  line-height: 1.8; /* 本文の行間を少し広げる */
+}
+
+/* microCMSリッチエディタの基本的なスタイル調整 (必要に応じて追加) */
+.postContent h2 {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--sys-color-outline); /* 見出しの下線 */
+  font-size: 1.5em;
+}
+
+.postContent h3 {
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  font-size: 1.3em;
+}
+
+.postContent p {
+  margin-bottom: 1.5em;
+}
+
+.postContent a {
+  color: var(--sys-color-primary); /* リンク色をアクセントカラーに */
+  text-decoration: underline;
+}
+.postContent a:hover {
+  text-decoration: none;
+}
+
+.postContent ul,
+.postContent ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.postContent li {
+  margin-bottom: 0.5em;
+}
+
+.postContent blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid var(--sys-color-outline);
+  background-color: rgba(128, 128, 128, 0.05);
+  color: inherit; /* 親要素の色を継承 */
+  opacity: 0.9;
+}
+
+.postContent pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background-color: rgba(128, 128, 128, 0.1);
+  border-radius: 4px;
+  overflow-x: auto; /* 横スクロール可能に */
+  font-family: monospace;
+}
+
+.postContent code {
+  font-family: monospace;
+  background-color: rgba(128, 128, 128, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 2px;
+  font-size: 0.9em;
+}
+
+.postContent pre code {
+  background-color: transparent; /* pre内のcodeは背景色不要 */
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit; /* preのフォントサイズを継承 */
+}
+
+.postContent img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+  display: block; /* 中央揃えしやすくするため */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+}
