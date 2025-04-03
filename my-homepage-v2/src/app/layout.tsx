@@ -128,7 +128,7 @@ export default function RootLayout({
         {/* フッター */}
         <footer className={styles.siteFooter}>
           <div className={styles.container}>
-            <p>&copy; {new Date().getFullYear()} Chcolte. All rights reserved.</p>
+            <p>&copy; Copyright 2025 Chcolte. All rights reserved.</p>
           </div>
         </footer>
       </body>

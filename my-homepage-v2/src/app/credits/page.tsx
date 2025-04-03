@@ -32,12 +32,12 @@ export default function CreditsPage() {
         <h4>使用サービス</h4>
         <ul>
           <li><a href="https://microcms.io/" target="_blank" rel="noopener noreferrer">microCMS</a></li>
-          <li><a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Google Fonts</a></li>
         </ul>
 
         <h4>その他</h4>
         <ul>
-          <li></li>
+          <li><a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Material Design Icons</a> - Apache Lisence 2.0</li>
+          <li><a href="https://www.shoshinsha-design.com/2020/05/%E3%83%8E%E3%83%BC%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3-%E3%83%94%E3%82%AF%E3%83%88-no-image-icon-2/.html" target="_blank" rel="noopener noreferrer">noimage画像</a> - <a href="https://www.shoshinsha-design.com/%E3%81%94%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84" target="_blank" rel="noopener noreferrer">独自ライセンス</a></li>
         </ul>
       </article>
     </div>
