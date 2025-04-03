@@ -7,7 +7,7 @@ const PAGE_NAME = "Credits";
 // メタデータを設定
 export const metadata: Metadata = {
   title: `Chcolte.com / ${PAGE_NAME}`,
-  description: 'このサイトで使用している技術やライブラリのクレジット表記です。',
+  description: 'このサイトで使用している技術やライブラリのリストです。',
 };
 
 export default function CreditsPage() {
