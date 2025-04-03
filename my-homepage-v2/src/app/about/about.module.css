@@ -1,0 +1,121 @@
+.aboutContainer {
+  padding: 2rem 1rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  line-height: 1.7;
+  color: var(--sys-color-on-surface-variant);
+}
+
+/* --- プロフィールセクション --- */
+.profileSection {
+  display: flex; /* Flexbox を有効にして子要素を横並びにする */
+  align-items: center; /* 子要素を垂直方向の中央で揃える */
+  gap: 1.5rem; /* 画像とテキストの間隔 */
+  margin-bottom: 3rem; /* 下のセクションとの間隔を少し広げる */
+  /* 枠線や背景色は不要なら削除 */
+  /* padding: 1rem; */ /* 必要であれば内側の余白を追加 */
+  /* border: 1px solid #eee; */ /* 確認用に枠線をつけても良い */
+}
+
+/* レスポンシブ対応: 画面幅が狭い場合 (例: 550px以下) */
+@media (max-width: 550px) {
+  .profileSection {
+    flex-direction: column; /* 縦並びに戻す */
+    align-items: center; /* 中央揃え */
+    text-align: center; /* テキストも中央揃え */
+    gap: 1rem; /* 縦並び時の間隔 */
+  }
+}
+
+.profileImageContainer {
+  flex-shrink: 0; /* 画像コンテナが縮まないようにする */
+}
+
+.profileImage {
+  border-radius: 50%; /* 円形にする場合 */
+  display: block;
+  object-fit: cover;
+  /* 画像サイズは page.js の width/height で指定されたものが基本になる */
+  /* CSSでサイズを上書きすることも可能 (例: width: 120px; height: 120px;) */
+}
+
+.profileDetails {
+  /* Flexアイテムとして振る舞う */
+  display: flex; /* ニックネームとbioを縦に積むための準備 */
+  flex-direction: column; /* 子要素(h1, p)を縦方向に配置 */
+  justify-content: center; /* テキストブロック内で垂直中央揃え(align-items: centerと合わせて効果を発揮) */
+  /* min-height: 120px; */ /* 画像の高さに合わせたい場合、明示的に指定する手もあるが、align-items: center で十分なことが多い */
+}
+
+.nickname {
+  font-size: 1.6rem; /* サイズ調整 */
+  font-weight: 600;
+  margin: 0 0 0.3rem 0; /* bioとの間隔を少し詰める */
+  line-height: 1.3;
+}
+
+.bio {
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.6; /* bio内の行間 */
+}
+
+/* --- その他のセクション (前回のミニマル版と同じ) --- */
+/* src/app/about/about.module.css - otherSections を Grid に変更 */
+
+/* --- (略: .aboutContainer, .profileSection などは前の提案のまま) --- */
+
+/* --- その他のセクション (Grid Layout適用) --- */
+.otherSections {
+  display: grid; /* Gridコンテナとして定義 */
+  /* デフォルト (モバイルなど狭い画面): 1列表示 */
+  grid-template-columns: 1fr;
+  /* セクション間の垂直方向・水平方向の隙間 */
+  gap: 1.5rem;
+  margin-top: 3rem; /* プロフィールセクションとの間隔 */
+}
+
+/* ブレークポイント (例: 600px以上) で段組みを適用 */
+@media (min-width: 600px) {
+  .otherSections {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem; /* 幅が広い場合は少し間隔を広げる */
+  }
+}
+
+/* 各セクションのスタイル */
+.section {
+  /* margin-bottom は Grid の gap で管理されるため不要 */
+  padding: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 0; /* Gridアイテム内の最初の要素のマージンをリセット */
+  margin-bottom: 1rem; /* タイトルとリストの間隔 */
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sys-color-on-surface-variant); /* 下線を少し調整 */
+  color: var(--sys-color-on-surface);
+}
+
+.list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.listItem {
+  margin-bottom: 0.5rem; /* リストアイテム間の間隔を少し広げる */
+  font-size: 0.95rem;
+  color: var(--sys-color-on-surface-variant);
+}
+
+.listItem a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.listItem a:hover {
+  text-decoration: underline;
+}
