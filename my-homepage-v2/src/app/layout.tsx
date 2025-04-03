@@ -69,7 +69,8 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <title>Chocolatte Website</title>
+        {/* 既存の <title> タグを削除 */}
+        {/* <title>Chocolatte Website</title> */}
         <meta name="description" content="Chocolatte's personal website" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
@@ -116,8 +117,18 @@ export default function RootLayout({
             </nav>
           </div>
         </header>
-        {/* children はそのまま */}
-        {children}
+
+        {/* children を main タグで囲み、クラスを付与 */}
+        <main className={styles.siteMain}>
+          {children}
+        </main>
+
+        {/* フッター */}
+        <footer className={styles.siteFooter}>
+          <div className={styles.container}>
+            <p>&copy; {new Date().getFullYear()} Chcolte. All rights reserved.</p>
+          </div>
+        </footer>
       </body>
     </html>
   );

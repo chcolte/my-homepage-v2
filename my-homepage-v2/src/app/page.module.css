@@ -7,9 +7,9 @@
 
 /* ヘッダー */
 .siteHeader {
-  background-color: var(--header-bg);
+  background-color: var(--sys-color-surface-container-high);
   padding: 10px 0;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.2); /* 半透明の境界線 */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
   transition: background-color 0.3s ease;
 }
 
@@ -20,10 +20,10 @@
 }
 
 .logoContainer {
-   background-color: var(--logo-container-bg); /* ロゴの背景をテーマに合わせる */
+   background-color: var(--sys-color-surface-container-lowest);
    padding: 5px;
    border-radius: 4px;
-   display: inline-block; /* サイズをコンテンツに合わせる */
+   display: inline-block;
    transition: background-color 0.3s ease;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .mainNav a {
-  color: var(--header-text);
+  color: var(--sys-color-on-surface-variant);
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -80,7 +80,7 @@
   padding: 5px; /* クリック領域を確保 */
   margin: 0;
   cursor: pointer;
-  color: var(--header-text); /* アイコンの色をヘッダーテキストに合わせる */
+  color: var(--sys-color-on-surface-variant);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +94,7 @@
 }
 
 .themeToggleButton:focus {
-  outline: 2px solid var(--accent-color);
+  outline: 2px solid var(--sys-color-primary);
   outline-offset: 2px;
 }
 
@@ -105,11 +105,12 @@
 
 /* メインコンテンツ */
 .siteMain {
-  padding: 40px 0;
+  padding: 40px 0; /* 上下のパディングは維持 */
+  flex-grow: 1; /* 残りのスペースを埋めるように拡張 */
 }
 
 .contentArea {
-  background-color: var(--content-bg);
+  background-color: var(--sys-color-surface-container-low);
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -120,8 +121,8 @@
 .buttonPrimary {
   display: inline-block;
   padding: 10px 20px;
-  background-color: var(--accent-color);
-  color: var(--button-text-color);
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -135,12 +136,161 @@
   text-decoration: none;
 }
 
+/* --- タグフィルターボタン用のスタイルを追加 --- */
+.tagFilterContainer {
+  margin-bottom: 25px; /* フィルターと記事一覧の間にスペース */
+  padding-bottom: 15px; /* 下線とのスペース */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2); /* 区切り線 */
+  display: flex; /* 横並びにする */
+  flex-wrap: wrap; /* 折り返しを許可 */
+  align-items: center; /* 中央揃え */
+  gap: 10px; /* ボタン間の隙間 */
+}
+
+.tagButton {
+  padding: 6px 12px;
+  border: 1px solid var(--sys-color-outline);
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: transparent;
+  color: var(--sys-color-outline);
+}
+
+.tagButtonActive {
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
+}
+
+.tagButtonInactive {
+  /* 非選択時のスタイルは .tagButton で定義済み */
+  /* 必要であればホバー効果などを追加 */
+  opacity: 0.7; /* 少し薄くする */
+}
+.tagButtonInactive:hover {
+    opacity: 1;
+    background-color: rgba(128, 128, 128, 0.1); /* 軽く背景色をつける */
+}
+
+/* --- ブログリスト用のスタイルを修正 --- */
+
+.blogList {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0 0;
+  display: flex; /* Flexbox を使用 */
+  flex-direction: column; /* 縦方向に並べる */
+  gap: 20px; /* カード間の垂直方向の隙間 */
+  /* grid-template-columns は削除 */
+}
+
+.blogListItem {
+  /* li 自体には特別なスタイルは不要 */
+}
+
+.articleCardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none; /* 基本状態では下線なし */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--sys-color-surface-container-low);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  /* height: 100% は削除 (Grid用だったため) */
+  /* display: flex, flex-direction: column は削除 (カード内部で設定) */
+}
+
+.articleCardLink:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration: none; /* ホバー時も下線なしを明示 */
+}
+
+.articleCard {
+  display: flex; /* カード内部を Flexbox でレイアウト */
+  flex-direction: row; /* 画像と詳細を横方向に並べる */
+  /* height: 100% は削除 */
+  align-items: stretch; /* 子要素の高さを揃える */
+}
+
+.articleImage {
+  width: 35%; /* 画像の幅をカード幅の35%程度に固定 */
+  flex-shrink: 0; /* 画像が縮まないようにする */
+  aspect-ratio: 16 / 9; /* アスペクト比は維持 */
+  overflow: hidden;
+  /* width: 100% は削除 */
+}
+
+.articleImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleDescription {
+  padding: 15px 20px; /* 左右のパディングを少し広げる */
+  flex-grow: 1; /* 残りの幅を埋める */
+  display: flex;
+  flex-direction: column; /* 詳細内部は縦方向に配置 */
+}
+
+.articleDescription h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  line-height: 1.4;
+  /* 省略表示が必要な場合は有効化 */
+  /* display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
+}
+
+.articleMeta {
+  margin-top: auto; /* メタ情報を下部に配置 */
+  font-size: 0.9em;
+  opacity: 0.8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.metaItem .material-symbols-outlined {
+  font-size: 1.1em;
+}
+
+/* --- フッター用のスタイルを追加 --- */
+.siteFooter {
+  margin-top: 60px;
+  padding: 20px 0;
+  background-color: var(--sys-color-surface-container-high);
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+  color: var(--sys-color-on-surface-variant);
+  font-size: 0.9em;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.siteFooter p {
+  margin: 0; /* デフォルトのマージンをリセット */
+  opacity: 0.8; /* 少し薄く表示 */
+}
+
 /* --- 元のpage.module.cssのスタイルは削除またはコメントアウト --- */
 /*
 .page { ... }
 .main { ... }
-.logo { ... }
-.ctas { ... }
+/* .logo { ... } */ /* layout.tsx で使っているので残すか確認 */
+/* .ctas { ... }
 .primary { ... }
 .secondary { ... }
 .footer { ... }

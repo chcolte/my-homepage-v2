@@ -1,42 +1,49 @@
 /* --- 基本的なリセットと全体設定 --- */
 :root {
-  /* デフォルトテーマを 1-B (ダークモダン) に設定 */
-  --header-bg: #000000;
-  --header-text: #B8B8B8;
-  --main-bg: #2C2C2C;
-  --content-bg: #3D3D3D;
-  --text-color: #E0E0E0;
-  --link-color: #B8B8B8;
-  --accent-color: #FFFFFF;
-  --button-text-color: #000000;
-  --logo-container-bg: #000000;
-  --logo-filter: none;
+  /* デフォルトテーマを 1-B (ダークモダン) に設定 - M3風変数名 */
+  --sys-color-surface-container-high: #000000; /* Header/Footer BG */
+  --sys-color-on-surface-variant: #B8B8B8;    /* Header/Footer Text */
+  --sys-color-surface: #2C2C2C;               /* Body BG */
+  --sys-color-surface-container-low: #3D3D3D; /* Content BG */
+  --sys-color-on-surface: #E0E0E0;            /* Body Text */
+  /* --link-color は --sys-color-on-surface を使うことにする */
+  --sys-color-primary: #FFFFFF;               /* Accent / Button BG */
+  --sys-color-on-primary: #000000;            /* Text on Accent/Button */
+  --sys-color-outline: #FFFFFF;
+  --sys-color-outline-rgb: 255, 255, 255; /* RGB値を追加 */
+  --sys-color-surface-container-lowest: #000000; /* Logo Container BG */
+  --logo-filter: none;                        /* Logo Filter (色ではない) */
+  /* --footer-bg, --footer-text は削除 */
 }
 
 /* --- 各テーマの変数設定 --- */
-body.theme-1a { /* ライトモダン */
-  --header-bg: #FFFFFF;
-  --header-text: #555555;
-  --main-bg: #F8F8F8;
-  --content-bg: #FFFFFF;
-  --text-color: #333333;
-  --link-color: #555555;
-  --accent-color: #A9A9A9;
-  --button-text-color: #FFFFFF;
-  --logo-container-bg: #FFFFFF;
+body.theme-1a { /* ライトモダン - M3風変数名 */
+  --sys-color-surface-container-high: #FFFFFF;
+  --sys-color-on-surface-variant: #555555;
+  --sys-color-surface: #F8F8F8;
+  --sys-color-surface-container-low: #FFFFFF;
+  --sys-color-on-surface: #333333;
+  --sys-color-primary: #A9A9A9;
+  --sys-color-on-primary: #FFFFFF;
+  --sys-color-outline: #A9A9A9;
+  --sys-color-outline-rgb: 169, 169, 169; /* RGB値を追加 */
+  --sys-color-surface-container-lowest: #FFFFFF;
   --logo-filter: brightness(0.9);
+  /* --footer-bg, --footer-text は削除 */
 }
-body.theme-1b { /* ダークモダン */
-  --header-bg: #000000;
-  --header-text: #B8B8B8;
-  --main-bg: #2C2C2C;
-  --content-bg: #3D3D3D;
-  --text-color: #E0E0E0;
-  --link-color: #B8B8B8;
-  --accent-color: #FFFFFF;
-  --button-text-color: #000000;
-  --logo-container-bg: #000000;
+body.theme-1b { /* ダークモダン - M3風変数名 */
+  --sys-color-surface-container-high: #000000;
+  --sys-color-on-surface-variant: #B8B8B8;
+  --sys-color-surface: #2C2C2C;
+  --sys-color-surface-container-low: #3D3D3D;
+  --sys-color-on-surface: #E0E0E0;
+  --sys-color-primary: #FFFFFF;
+  --sys-color-on-primary: #000000;
+  --sys-color-outline: #FFFFFF;
+  --sys-color-outline-rgb: 255, 255, 255; /* RGB値を追加 */
+  --sys-color-surface-container-lowest: #000000;
   --logo-filter: none;
+  /* --footer-bg, --footer-text は削除 */
 }
 /* theme-2a, 2b, 3a, 3b の定義を削除 */
 /*
@@ -46,18 +53,30 @@ body.theme-3a { ... }
 body.theme-3b { ... }
 */
 
-/* --- スタイル定義 (CSS変数を使用) --- */
+/* --- スタイル定義 (新しいCSS変数を使用) --- */
+html, body {
+  height: 100%;
+}
+
+html {
+  /* ページ長に関わらず縦スクロールバーを常に表示 */
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
-  background-color: var(--main-bg);
-  color: var(--text-color);
+  background-color: var(--sys-color-surface);
+  color: var(--sys-color-on-surface);
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease; /* スムーズな切り替え */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
-  color: var(--link-color);
+  color: var(--sys-color-on-surface); /* リンク色を通常テキストと同じに */
   text-decoration: none;
 }
 
@@ -66,7 +85,7 @@ a:hover {
 }
 
 h1 {
-  color: var(--text-color);
+  color: var(--sys-color-on-surface); /* 変更 */
 }
 
 /* Next.jsのデフォルトスタイルを削除またはコメントアウト */
@@ -101,3 +120,46 @@ body {
   }
 }
 */
+
+/* --- スクロールバーのスタイル (再修正) --- */
+html {
+  /* ... (overflow-y: scroll; は上記で設定済み) ... */
+  /* Firefox: スクロールバーを細く */
+  scrollbar-width: thin;
+  /* Firefox: 通常時は半透明、トラックは透明 */
+  scrollbar-color: rgba(var(--sys-color-outline-rgb), 0.3) transparent;
+  transition: scrollbar-color 0.2s ease-out;
+}
+
+html:hover {
+   /* Firefox: ホバー時に少し濃くする */
+  scrollbar-color: rgba(var(--sys-color-outline-rgb), 0.6) transparent;
+}
+
+/* Webkit系ブラウザ (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  /* スクロールバーの幅を細めに設定 */
+  width: 8px;
+  height: 8px;
+  /* 通常時は非表示にする transition は削除 */
+}
+
+/* html:hover::-webkit-scrollbar のスタイルは不要 */
+
+::-webkit-scrollbar-track {
+  background: transparent; /* トラックは常に透明 */
+}
+
+::-webkit-scrollbar-thumb {
+  /* 通常時は半透明 */
+  background-color: rgba(var(--sys-color-outline-rgb), 0.3);
+  border-radius: 4px;
+  border: 2px solid transparent; /* 細く見せるためのトリック */
+  background-clip: padding-box;
+  transition: background-color 0.2s ease-out;
+}
+
+/* html要素にホバーした際につまみの色を濃くする */
+html:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--sys-color-outline-rgb), 0.6);
+}

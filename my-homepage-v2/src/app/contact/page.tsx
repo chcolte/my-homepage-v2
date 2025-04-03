@@ -4,9 +4,9 @@ import { useEffect } from 'react'; // useEffect をインポート
 import styles from "../page.module.css"; // 必要に応じてインポート
 
 // ページ名を定数として定義
-const PAGE_NAME = "About";
+const PAGE_NAME = "Contact";
 
-export default function AboutPage() {
+export default function ContactPage() {
   // useEffect を使ってタイトルを設定
   useEffect(() => {
     // 定数を使用してタイトルを設定
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <div className={styles.container}>
         <article className={styles.contentArea}>
           <h1>{PAGE_NAME}</h1>
-          <p>このページは自己紹介ページです。</p>
+          <p>お問い合わせはこちらから。</p>
           {/* 他のコンテンツ */}
         </article>
       </div>
