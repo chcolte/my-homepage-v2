@@ -42,7 +42,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogDetail({ params }: Props) {
   let post;
   try {
-    // こちらも params を await してから id を取り出す
     const resolvedParams = await params; // resolvedParams は { id: string } 型になる
     const id = resolvedParams.id;
 
@@ -62,11 +61,9 @@ export default async function BlogDetail({ params }: Props) {
     return date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
-  // --- 本文のサニタイズとパース ---
-  // 1. DOMPurify でサニタイズ
-  const sanitizedContent = DOMPurify.sanitize(post.content);
-  // 2. html-react-parser で React 要素に変換
-  const reactContent = parse(sanitizedContent);
+  // 本文のサニタイズとパース
+  const sanitizedContent = DOMPurify.sanitize(post.content); // サニタイズ
+  const reactContent = parse(sanitizedContent); // React要素にパース
 
   return (
     <main className={styles.siteMain}>

@@ -73,6 +73,7 @@ export default function RootLayout({
         {/* <title>Chocolatte Website</title> */}
         <meta name="description" content="Chocolatte's personal website" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="icon" href="/fabicon.png" type="image/png" sizes="any" />
       </head>
       {/* body のクラスは isMounted 状態を考慮して設定 */}
       {/* suppressHydrationWarning は念のため残しても良いが、不要になる可能性が高い */}
@@ -97,7 +98,7 @@ export default function RootLayout({
                 <li><Link href="/about">About</Link></li>
                 <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/webtools">WebTools</Link></li>
-                <li><Link href="/contact">Contact</Link></li>
+                <li><Link href="/credits">Credits</Link></li>
                 <li className={styles.themeSwitcher}>
                   {/* ボタンの表示内容は isMounted 状態を考慮 */}
                   <button
@@ -109,7 +110,8 @@ export default function RootLayout({
                     // disabled={!isMounted}
                   >
                     <span className="material-symbols-outlined">
-                      {buttonIcon}
+                      {/* isMounted をチェックしてからアイコンを決定 */}
+                      {isMounted ? (currentThemeForButton === themes[0] ? 'dark_mode' : 'light_mode') : 'settings_brightness'}
                     </span>
                   </button>
                 </li>
