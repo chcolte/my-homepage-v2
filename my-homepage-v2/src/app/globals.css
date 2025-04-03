@@ -1,42 +1,103 @@
+/* --- 基本的なリセットと全体設定 --- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* デフォルトテーマを 1-B (ダークモダン) に設定 */
+  --header-bg: #000000;
+  --header-text: #B8B8B8;
+  --main-bg: #2C2C2C;
+  --content-bg: #3D3D3D;
+  --text-color: #E0E0E0;
+  --link-color: #B8B8B8;
+  --accent-color: #FFFFFF;
+  --button-text-color: #000000;
+  --logo-container-bg: #000000;
+  --logo-filter: none;
+}
+
+/* --- 各テーマの変数設定 --- */
+body.theme-1a { /* ライトモダン */
+  --header-bg: #FFFFFF;
+  --header-text: #555555;
+  --main-bg: #F8F8F8;
+  --content-bg: #FFFFFF;
+  --text-color: #333333;
+  --link-color: #555555;
+  --accent-color: #A9A9A9;
+  --button-text-color: #FFFFFF;
+  --logo-container-bg: #FFFFFF;
+  --logo-filter: brightness(0.9);
+}
+body.theme-1b { /* ダークモダン */
+  --header-bg: #000000;
+  --header-text: #B8B8B8;
+  --main-bg: #2C2C2C;
+  --content-bg: #3D3D3D;
+  --text-color: #E0E0E0;
+  --link-color: #B8B8B8;
+  --accent-color: #FFFFFF;
+  --button-text-color: #000000;
+  --logo-container-bg: #000000;
+  --logo-filter: none;
+}
+/* theme-2a, 2b, 3a, 3b の定義を削除 */
+/*
+body.theme-2a { ... }
+body.theme-2b { ... }
+body.theme-3a { ... }
+body.theme-3b { ... }
+*/
+
+/* --- スタイル定義 (CSS変数を使用) --- */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease; /* スムーズな切り替え */
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+/* Next.jsのデフォルトスタイルを削除またはコメントアウト */
+/*
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
+*/

@@ -1,168 +1,147 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+/* コンテナ */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
+/* ヘッダー */
+.siteHeader {
+  background-color: var(--header-bg);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2); /* 半透明の境界線 */
+  transition: background-color 0.3s ease;
+}
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
+.logoContainer {
+   background-color: var(--logo-container-bg); /* ロゴの背景をテーマに合わせる */
+   padding: 5px;
+   border-radius: 4px;
+   display: inline-block; /* サイズをコンテンツに合わせる */
+   transition: background-color 0.3s ease;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+.logo img {
+  display: block;
+  height: 40px;
+  /* CSS変数によるフィルターはglobals.cssのbodyクラスで制御するため、ここでは不要 */
+  /* filter: var(--logo-filter); */
+  /* transition: filter 0.3s ease; */
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
+/* ナビゲーション */
+.mainNav ul {
+  list-style: none;
   margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
+  padding: 0;
   display: flex;
-  gap: 16px;
+  align-items: center;
 }
 
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
+.mainNav li {
+  margin-left: 20px;
+  display: flex; /* ボタンを中央揃えにしやすくするため */
+  align-items: center; /* ボタンを中央揃えにしやすくするため */
+}
+
+.mainNav a {
+  color: var(--header-text);
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.mainNav a:hover {
+  /* ホバー色は単純に少し明るく/暗くするか、別の変数を定義 */
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* テーマスイッチャー (ボタンに変更) */
+.themeSwitcher {
+  /* li要素自体のスタイルは不要な場合が多い */
+}
+
+/* themeSwitcher select スタイルを削除 */
+/*
+.themeSwitcher select { ... }
+.themeSwitcher select:focus { ... }
+*/
+
+/* 新しいテーマ切り替えボタンのスタイル */
+.themeToggleButton {
+  background: none;
   border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  padding: 5px; /* クリック領域を確保 */
+  margin: 0;
   cursor: pointer;
+  color: var(--header-text); /* アイコンの色をヘッダーテキストに合わせる */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  border-radius: 50%; /* 円形にする場合 */
+  transition: background-color 0.2s ease, color 0.3s ease;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.themeToggleButton:hover {
+  background-color: rgba(128, 128, 128, 0.1); /* ホバー時の背景色 */
+  opacity: 0.8; /* アイコンの透明度を少し下げる */
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+.themeToggleButton:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
+/* アイコンのサイズ調整 (任意) */
+.themeToggleButton .material-symbols-outlined {
+  font-size: 24px; /* アイコンサイズ */
 }
 
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* メインコンテンツ */
+.siteMain {
+  padding: 40px 0;
 }
 
-.footer img {
-  flex-shrink: 0;
+.contentArea {
+  background-color: var(--content-bg);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+/* ボタン */
+.buttonPrimary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+.buttonPrimary:hover {
+  opacity: 0.85;
+  text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-}
+/* --- 元のpage.module.cssのスタイルは削除またはコメントアウト --- */
+/*
+.page { ... }
+.main { ... }
+.logo { ... }
+.ctas { ... }
+.primary { ... }
+.secondary { ... }
+.footer { ... }
+*/
