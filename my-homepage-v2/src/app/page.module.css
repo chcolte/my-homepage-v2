@@ -1,168 +1,425 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+/* コンテナ */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
+/* ヘッダー */
+.siteHeader {
+  background-color: var(--sys-color-surface-container-high);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  transition: background-color 0.3s ease;
+}
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
+.logoContainer {
+   background-color: var(--sys-color-surface-container-lowest);
+   padding: 5px;
+   border-radius: 4px;
+   display: inline-block;
+   transition: background-color 0.3s ease;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+.logo img {
+  display: block;
+  height: 40px;
+  /* CSS変数によるフィルターはglobals.cssのbodyクラスで制御するため、ここでは不要 */
+  /* filter: var(--logo-filter); */
+  /* transition: filter 0.3s ease; */
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
+/* ナビゲーション */
+.mainNav ul {
+  list-style: none;
   margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
+  padding: 0;
   display: flex;
-  gap: 16px;
+  align-items: center;
 }
 
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
+.mainNav li {
+  margin-left: 20px;
+  display: flex; /* ボタンを中央揃えにしやすくするため */
+  align-items: center; /* ボタンを中央揃えにしやすくするため */
+}
+
+.mainNav a {
+  color: var(--sys-color-on-surface-variant);
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.mainNav a:hover {
+  /* ホバー色は単純に少し明るく/暗くするか、別の変数を定義 */
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* テーマスイッチャー (ボタンに変更) */
+.themeSwitcher {
+  /* li要素自体のスタイルは不要な場合が多い */
+}
+
+/* themeSwitcher select スタイルを削除 */
+/*
+.themeSwitcher select { ... }
+.themeSwitcher select:focus { ... }
+*/
+
+/* 新しいテーマ切り替えボタンのスタイル */
+.themeToggleButton {
+  background: none;
   border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  padding: 5px; /* クリック領域を確保 */
+  margin: 0;
   cursor: pointer;
+  color: var(--sys-color-on-surface-variant);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  border-radius: 50%; /* 円形にする場合 */
+  transition: background-color 0.2s ease, color 0.3s ease;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.themeToggleButton:hover {
+  background-color: rgba(128, 128, 128, 0.1); /* ホバー時の背景色 */
+  opacity: 0.8; /* アイコンの透明度を少し下げる */
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+.themeToggleButton:focus {
+  outline: 2px solid var(--sys-color-primary);
+  outline-offset: 2px;
 }
 
-.footer {
-  grid-row-start: 3;
+/* アイコンのサイズ調整 (任意) */
+.themeToggleButton .material-symbols-outlined {
+  font-size: 24px; /* アイコンサイズ */
+}
+
+/* メインコンテンツ */
+.siteMain {
+  padding: 40px 0; /* 上下のパディングは維持 */
+  flex-grow: 1; /* 残りのスペースを埋めるように拡張 */
+}
+
+.contentArea {
+  background-color: var(--sys-color-surface-container-low);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+/* ボタン */
+.buttonPrimary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttonPrimary:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+/* --- タグフィルターボタン用のスタイルを追加 --- */
+.tagFilterContainer {
+  margin-bottom: 25px; /* フィルターと記事一覧の間にスペース */
+  padding-bottom: 15px; /* 下線とのスペース */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2); /* 区切り線 */
+  display: flex; /* 横並びにする */
+  flex-wrap: wrap; /* 折り返しを許可 */
+  align-items: center; /* 中央揃え */
+  gap: 10px; /* ボタン間の隙間 */
+}
+
+.tagButton {
+  padding: 6px 12px;
+  border: 1px solid var(--sys-color-outline);
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: transparent;
+  color: var(--sys-color-outline);
+}
+
+.tagButtonActive {
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
+}
+
+.tagButtonInactive {
+  /* 非選択時のスタイルは .tagButton で定義済み */
+  /* 必要であればホバー効果などを追加 */
+  opacity: 0.7; /* 少し薄くする */
+}
+.tagButtonInactive:hover {
+    opacity: 1;
+    background-color: rgba(128, 128, 128, 0.1); /* 軽く背景色をつける */
+}
+
+/* --- ブログリスト用のスタイルを修正 --- */
+
+.blogList {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0 0;
+  display: flex; /* Flexbox を使用 */
+  flex-direction: column; /* 縦方向に並べる */
+  gap: 20px; /* カード間の垂直方向の隙間 */
+  /* grid-template-columns は削除 */
+}
+
+.blogListItem {
+  /* li 自体には特別なスタイルは不要 */
+}
+
+.articleCardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none; /* 基本状態では下線なし */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--sys-color-surface-container-low);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  /* height: 100% は削除 (Grid用だったため) */
+  /* display: flex, flex-direction: column は削除 (カード内部で設定) */
+}
+
+.articleCardLink:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration: none; /* ホバー時も下線なしを明示 */
+}
+
+.articleCard {
+  display: flex; /* カード内部を Flexbox でレイアウト */
+  flex-direction: row; /* 画像と詳細を横方向に並べる */
+  /* height: 100% は削除 */
+  align-items: stretch; /* 子要素の高さを揃える */
+}
+
+.articleImage {
+  width: 35%; /* 画像の幅をカード幅の35%程度に固定 */
+  flex-shrink: 0; /* 画像が縮まないようにする */
+  aspect-ratio: 16 / 9; /* アスペクト比は維持 */
+  overflow: hidden;
+  /* width: 100% は削除 */
+}
+
+.articleImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleDescription {
+  padding: 15px 20px; /* 左右のパディングを少し広げる */
+  flex-grow: 1; /* 残りの幅を埋める */
   display: flex;
-  gap: 24px;
+  flex-direction: column; /* 詳細内部は縦方向に配置 */
 }
 
-.footer a {
+.articleDescription h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  line-height: 1.4;
+  /* 省略表示が必要な場合は有効化 */
+  /* display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
+}
+
+.articleMeta {
+  margin-top: auto; /* メタ情報を下部に配置 */
+  font-size: 0.9em;
+  opacity: 0.8;
   display: flex;
+  flex-wrap: wrap;
+  gap: 5px 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.metaItem {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
-.footer img {
-  flex-shrink: 0;
+.metaItem .material-symbols-outlined {
+  font-size: 1.1em;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+/* --- フッター用のスタイルを追加 --- */
+.siteFooter {
+  margin-top: 60px;
+  padding: 20px 0;
+  background-color: var(--sys-color-surface-container-high);
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+  color: var(--sys-color-on-surface-variant);
+  font-size: 0.9em;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+.siteFooter p {
+  margin: 0; /* デフォルトのマージンをリセット */
+  opacity: 0.8; /* 少し薄く表示 */
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+/* --- 元のpage.module.cssのスタイルは削除またはコメントアウト --- */
+/*
+.page { ... }
+.main { ... }
+/* .logo { ... } */ /* layout.tsx で使っているので残すか確認 */
+/* .ctas { ... }
+.primary { ... }
+.secondary { ... }
+.footer { ... }
+*/
+
+/* --- ブログ詳細ページ用のスタイル --- */
+.articleMetaSingle {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+/* --- 見出しと本文の区切り線スタイル --- */
+.titleSeparator {
+  margin-top: 20px; /* 見出し下のマージン */
+  margin-bottom: 40px; /* 区切り線下のマージン */
+  padding-bottom: 20px; /* 線と下のコンテンツ間のスペース */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1); /* 区切り線 */
+}
+
+.articleEyecatchSingle {
+  margin-bottom: 20px;
+  text-align: center; /* 画像を中央揃え */
+}
+
+.articleEyecatchSingle img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px; /* 少し角を丸める */
+}
+
+.metaItemsSingle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px; /* 縦横の隙間 */
+  font-size: 0.9em;
+  opacity: 0.9;
+  justify-content: center; /* 中央揃え */
+}
+
+/* .metaItem は共通スタイルを使用 */
+.metaItem .material-symbols-outlined {
+  font-size: 1.1em;
+  vertical-align: middle; /* アイコンとテキストの縦位置調整 */
+  margin-right: 3px; /* アイコンとテキストの間のスペース */
+}
+
+.postContent {
+  margin-top: 40px;
+  line-height: 1.8; /* 本文の行間を少し広げる */
+}
+
+/* microCMSリッチエディタの基本的なスタイル調整 (必要に応じて追加) */
+.postContent h2 {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--sys-color-outline); /* 見出しの下線 */
+  font-size: 1.5em;
+}
+
+.postContent h3 {
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  font-size: 1.3em;
+}
+
+.postContent p {
+  margin-bottom: 1.5em;
+}
+
+.postContent a {
+  color: var(--sys-color-primary); /* リンク色をアクセントカラーに */
+  text-decoration: underline;
+}
+.postContent a:hover {
+  text-decoration: none;
+}
+
+.postContent ul,
+.postContent ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.postContent li {
+  margin-bottom: 0.5em;
+}
+
+.postContent blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid var(--sys-color-outline);
+  background-color: rgba(128, 128, 128, 0.05);
+  color: inherit; /* 親要素の色を継承 */
+  opacity: 0.9;
+}
+
+.postContent pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background-color: rgba(128, 128, 128, 0.1);
+  border-radius: 4px;
+  overflow-x: auto; /* 横スクロール可能に */
+  font-family: monospace;
+}
+
+.postContent code {
+  font-family: monospace;
+  background-color: rgba(128, 128, 128, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 2px;
+  font-size: 0.9em;
+}
+
+.postContent pre code {
+  background-color: transparent; /* pre内のcodeは背景色不要 */
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit; /* preのフォントサイズを継承 */
+}
+
+.postContent img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+  display: block; /* 中央揃えしやすくするため */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
 }
