@@ -7,8 +7,7 @@ import styles from "../page.module.css";
 import type { Blog, Tag } from '../microcms_types'; // 型定義をインポート
 
 // デフォルトのアイキャッチ画像パス
-const defaultEyecatch = '/images/no-image.png'; // (public/images/ に配置想定)
-
+const defaultEyecatch = '/noimage.svg';
 type Props = {
   articles: Blog[];
   allTags: Tag[];

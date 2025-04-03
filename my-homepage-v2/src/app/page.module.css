@@ -304,6 +304,14 @@
   border-bottom: 1px solid rgba(128, 128, 128, 0.1);
 }
 
+/* --- 見出しと本文の区切り線スタイル --- */
+.titleSeparator {
+  margin-top: 20px; /* 見出し下のマージン */
+  margin-bottom: 40px; /* 区切り線下のマージン */
+  padding-bottom: 20px; /* 線と下のコンテンツ間のスペース */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1); /* 区切り線 */
+}
+
 .articleEyecatchSingle {
   margin-bottom: 20px;
   text-align: center; /* 画像を中央揃え */

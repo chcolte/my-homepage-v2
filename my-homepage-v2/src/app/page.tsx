@@ -21,10 +21,10 @@ export default function Home() {
           <h1>Hello, NextJS!</h1>
           {/* <p>このサイトはChocolatteのポートフォリオ兼ブログサイトです。</p> */} {/* この行を削除 */}
           <p>
-            hello, NextJS! こんにちは、このウェブサイトはchocolatteの管理するウェブサイトで、2024年2月に世に解き放たれました。そして、このトップページはブログや今後作成するであろうウェブツール等へつながるハブとしてのページとなります。
+            hello, NextJS!
           </p>
           <p>
-            現在、構築運用中
+            現在、簡易運用中
           </p>
           <p style={{ marginTop: '20px' }}>
             <button className={styles.buttonPrimary}>サンプルボタン</button>

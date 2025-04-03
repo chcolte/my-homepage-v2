@@ -1,12 +1,7 @@
 // libs/microcms.ts
 
 import { createClient } from "microcms-js-sdk";
-import type {
- MicroCMSQueries,
- MicroCMSImage,
- MicroCMSDate,
- MicroCMSContentId,
-} from "microcms-js-sdk";
+import type {MicroCMSQueries} from "microcms-js-sdk";
 import {Blog, Tag} from "./microcms_types";
 
 
