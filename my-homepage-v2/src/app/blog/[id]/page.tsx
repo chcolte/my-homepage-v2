@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation'; // notFound をインポート
 import { getDetail } from '../../microcms'; // getDetail をインポート
 import styles from "../../page.module.css";
 import Image from 'next/image'; // Image をインポート
-// import parse from 'html-react-parser'; // HTML を安全にパースする場合 (別途インストールが必要: npm install html-react-parser)
-// import DOMPurify from 'isomorphic-dompurify'; // サニタイズする場合 (別途インストールが必要: npm install isomorphic-dompurify)
+import DOMPurify from 'isomorphic-dompurify'; // サニタイズする場合 (別途インストールが必要: npm install isomorphic-dompurify)
+import parse from 'html-react-parser';
 
 type Props = {
   params: Promise<{ id: string }>; // params が Promise<{ id: string }> 型であることを明示
@@ -62,17 +62,11 @@ export default async function BlogDetail({ params }: Props) {
     return date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
-  // --- 本文の HTML を安全に表示する方法 ---
-  // 1. dangerouslySetInnerHTML (シンプルだがXSSリスクあり)
-  // const sanitizedContent = post.content; // サニタイズしない場合
-
-  // 2. DOMPurify でサニタイズしてから dangerouslySetInnerHTML (推奨)
-  // import DOMPurify from 'isomorphic-dompurify';
-  // const sanitizedContent = DOMPurify.sanitize(post.content);
-
-  // 3. html-react-parser で React 要素に変換 (より安全)
-  // import parse from 'html-react-parser';
-  // const reactContent = parse(post.content);
+  // --- 本文のサニタイズとパース ---
+  // 1. DOMPurify でサニタイズ
+  const sanitizedContent = DOMPurify.sanitize(post.content);
+  // 2. html-react-parser で React 要素に変換
+  const reactContent = parse(sanitizedContent);
 
   return (
     <main className={styles.siteMain}>
@@ -123,17 +117,8 @@ export default async function BlogDetail({ params }: Props) {
           </div>
 
           {/* 記事本文 */}
-          <div
-            className={styles.postContent}
-            // --- 表示方法を選択 ---
-            // 1. dangerouslySetInnerHTML (サニタイズなし)
-            dangerouslySetInnerHTML={{ __html: post.content }}
-
-            // 2. dangerouslySetInnerHTML (DOMPurify でサニタイズ)
-            // dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-          >
-            {/* 3. html-react-parser を使う場合 */}
-            {/* {reactContent} */}
+          <div className={styles.postContent}>
+            {reactContent}
           </div>
 
         </article>
@@ -141,11 +126,3 @@ export default async function BlogDetail({ params }: Props) {
     </main>
   );
 }
-
-// (任意) generateStaticParams
-// export async function generateStaticParams() {
-//   const articles = [{ id: 'first-post' }, { id: 'second-post' }]; // ダミー
-//   return articles.map((article) => ({
-//     id: article.id,
-//   }));
-// } 
