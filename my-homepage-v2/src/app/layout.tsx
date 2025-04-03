@@ -69,9 +69,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        {/* 既存の <title> タグを削除 */}
-        {/* <title>Chocolatte Website</title> */}
-        <meta name="description" content="Chocolatte's personal website" />
+        <meta name="description" content="Chcolte's personal website" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="icon" href="/fabicon.png" type="image/png" sizes="any" />
       </head>
@@ -85,7 +83,7 @@ export default function RootLayout({
                 <div className={styles.logo}>
                   <Image
                     src="/sitelogo.svg"
-                    alt="Chocolatte Logo"
+                    alt="Chcolate Logo"
                     width={100}
                     height={40}
                     priority
