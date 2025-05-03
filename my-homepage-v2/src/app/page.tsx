@@ -1,15 +1,10 @@
-"use client";
-
-import { useEffect } from 'react';
 import Image from "next/image";
 import styles from "./page.module.css";
 
+export const metadata = { title: "chcolte.com / Top" };
+
 export default function Home() {
-
-  useEffect(() => {
-    document.title = "Chcolte.com";
-  }, []); // マウント時に一度だけ実行
-
+  
   return (
       <div className={styles.container}>
         <article className={styles.contentArea}>
