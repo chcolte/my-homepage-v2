@@ -37,20 +37,17 @@ export default function BlogListClient({ articles, allTags }: Props) {
     if (selectedTagNames.length === 0) {
       // タグが一つも選択されていない場合は、タグを持たない記事のみ表示
       setFilteredArticles(articles.filter(article => article.tags.length === 0));
-      // もしタグが一つも選択されていない場合に全記事表示したい場合は以下のようにする
-      // setFilteredArticles(articles);
     } else {
       // 選択中のタグが1つでもある場合
       const filtered = articles.filter(article =>
-        // タグを持たない記事は常に表示 OR いずれかのタグが選択されている
+        // タグを持たない記事 OR いずれかのタグが選択されている記事は表示
         article.tags.length === 0 || article.tags.some(tag => selectedTagNames.includes(tag.name))
       );
       setFilteredArticles(filtered);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTagNames, articles]); // articles も依存配列に追加 (props が変わった場合に対応)
 
-  // 日付フォーマット関数 (必要に応じて調整)
+  // 日付フォーマット
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ja-JP'); // 日本語ロケールで表示
@@ -84,11 +81,11 @@ export default function BlogListClient({ articles, allTags }: Props) {
                     <Image
                       // microCMS の eyecatch はオプショナルなので ?. を使う
                       src={article.eyecatch?.url || defaultEyecatch}
-                      alt="" // 装飾的な画像のためaltは空
+                      alt=""
                       width={article.eyecatch?.width || 320} // microCMS の幅、なければデフォルト
                       height={article.eyecatch?.height || 180} // microCMS の高さ、なければデフォルト
                       style={{ objectFit: 'cover' }}
-                      priority={false} // リスト表示では priority は false が一般的
+                      priority={false}
                     />
                   </div>
                   {/* 記事詳細 */}

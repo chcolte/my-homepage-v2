@@ -1,16 +1,16 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation'; // notFound をインポート
-import { getDetail } from '../../microcms'; // getDetail をインポート
+import { notFound } from 'next/navigation';
+import { getDetail } from '../../microcms';
 import styles from "../../page.module.css";
-import Image from 'next/image'; // Image をインポート
-import DOMPurify from 'isomorphic-dompurify'; // サニタイズする場合 (別途インストールが必要: npm install isomorphic-dompurify)
+import Image from 'next/image';
+import DOMPurify from 'isomorphic-dompurify';
 import parse from 'html-react-parser';
 
 type Props = {
-  params: Promise<{ id: string }>; // params が Promise<{ id: string }> 型であることを明示
+  params: Promise<{ id: string }>; // paramsはPromise<{ id: string }> 型である
 };
 
-// 動的なメタデータを生成
+// 動的なメタデータを生成する関数
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     // params を await してから id を取り出す
@@ -24,20 +24,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = await getDetail(id);
     return {
       title: `Chcolte.com / ${post.title}`,
-      // description: post.description, // 必要に応じて description も設定
+      // description: post.description, // 必要に応じて description 等も設定可能
     };
   } catch (error) {
-    // エラーログを追加
-    console.error("Error fetching metadata for blog post:", error);
     // エラーが発生した場合 (記事が見つからないなど)
+    console.error("Error fetching metadata for blog post:", error);
     return {
       title: "Chcolte.com / Blog Post Not Found",
     };
   }
 }
 
-// revalidate オプションを追加 (任意)
-// export const revalidate = 60;
 
 export default async function BlogDetail({ params }: Props) {
   let post;
@@ -55,7 +52,7 @@ export default async function BlogDetail({ params }: Props) {
     notFound(); // 404ページを表示
   }
 
-  // 日付フォーマット関数 (必要に応じて調整)
+  // 日付フォーマット
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -78,10 +75,10 @@ export default async function BlogDetail({ params }: Props) {
               <div className={styles.articleEyecatchSingle}>
                 <Image
                   src={post.eyecatch.url}
-                  alt="" // 装飾的な画像
+                  alt=""
                   width={post.eyecatch.width}
                   height={post.eyecatch.height}
-                  priority // 詳細ページでは priority を true にすることが多い
+                  priority
                   style={{ maxWidth: '100%', height: 'auto' }} // レスポンシブ対応
                 />
               </div>

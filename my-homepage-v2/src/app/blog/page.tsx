@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 };
 export const dynamic = 'force-dynamic';
 
-// revalidate オプションを追加 (任意)
-// export const revalidate = 60; // 60秒ごとに再検証 (ISR)
 
 export default async function BlogListPage() {
   // 記事一覧とタグ一覧をサーバーサイドで取得
