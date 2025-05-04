@@ -1,8 +1,8 @@
 import type {
- MicroCMSQueries,
+ //MicroCMSQueries,
  MicroCMSImage,
  MicroCMSDate,
- MicroCMSContentId,
+ //MicroCMSContentId,
 } from "microcms-js-sdk";
 
 //カテゴリタグの型定義

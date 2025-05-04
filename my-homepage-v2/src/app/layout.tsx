@@ -63,7 +63,6 @@ export default function RootLayout({
   // テーマ切り替えボタンの表示内容を決定
   // マウント前はデフォルト、マウント後は実際のテーマに基づいて表示
   const currentThemeForButton = isMounted ? theme : defaultTheme;
-  const buttonIcon = currentThemeForButton === 'theme-1a' ? 'dark_mode' : 'light_mode';
   const buttonLabel = currentThemeForButton === 'theme-1a' ? "ダークモードに切り替え" : "ライトモードに切り替え";
 
   return (
