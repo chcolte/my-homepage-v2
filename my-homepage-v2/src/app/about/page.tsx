@@ -74,7 +74,7 @@ export default function AboutPage() {
               <h2 className={aboutStyles.sectionTitle}>Contact</h2>
               <ul className={aboutStyles.list}>
                 <li key="0" className={aboutStyles.listItem}>本サイトに関してのお問い合わせは次のアドレスへお願いいたします。</li>
-                <li key="1" className={aboutStyles.listItem}>"ここにメアド"@chcolte.com</li>
+                <li key="1" className={aboutStyles.listItem}>&quot;ここにメアド&quot;@chcolte.com</li>
               </ul>
             </div>
           </section>
