@@ -1,17 +1,16 @@
 "use client";
 
-import { useEffect } from 'react'; // useEffect をインポート
-import styles from "../page.module.css"; // 必要に応じてインポート
-import aboutStyles from './about.module.css'; // このページ専用のスタイル
+import { useEffect } from 'react';
+import styles from "../page.module.css";
+import aboutStyles from './about.module.css';
 import Image from 'next/image';
 
 const PAGE_NAME = "About";
 
 export default function AboutPage() {
-  // useEffect を使ってタイトルを設定
   useEffect(() => {
     document.title = `Chcolte.com / ${PAGE_NAME}`;
-  }, []); // マウント時に一度だけ実行
+  }, []);
 
   return (
       <div className={styles.container}>
