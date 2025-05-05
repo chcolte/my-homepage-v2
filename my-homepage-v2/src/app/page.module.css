@@ -30,9 +30,6 @@
 .logo img {
   display: block;
   height: 40px;
-  /* CSS変数によるフィルターはglobals.cssのbodyクラスで制御するため、ここでは不要 */
-  /* filter: var(--logo-filter); */
-  /* transition: filter 0.3s ease; */
 }
 
 /* ナビゲーション */
@@ -67,11 +64,6 @@
   /* li要素自体のスタイルは不要な場合が多い */
 }
 
-/* themeSwitcher select スタイルを削除 */
-/*
-.themeSwitcher select { ... }
-.themeSwitcher select:focus { ... }
-*/
 
 /* 新しいテーマ切り替えボタンのスタイル */
 .themeToggleButton {
@@ -84,13 +76,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; /* 円形にする場合 */
+  border-radius: 50%;
   transition: background-color 0.2s ease, color 0.3s ease;
 }
 
 .themeToggleButton:hover {
   background-color: rgba(128, 128, 128, 0.1); /* ホバー時の背景色 */
-  opacity: 0.8; /* アイコンの透明度を少し下げる */
+  opacity: 0.8;
 }
 
 .themeToggleButton:focus {
@@ -98,7 +90,7 @@
   outline-offset: 2px;
 }
 
-/* アイコンのサイズ調整 (任意) */
+/* アイコンのサイズ調整*/
 .themeToggleButton .material-symbols-outlined {
   font-size: 24px; /* アイコンサイズ */
 }
@@ -165,7 +157,6 @@
 
 .tagButtonInactive {
   /* 非選択時のスタイルは .tagButton で定義済み */
-  /* 必要であればホバー効果などを追加 */
   opacity: 0.7; /* 少し薄くする */
 }
 .tagButtonInactive:hover {
@@ -173,7 +164,7 @@
     background-color: rgba(128, 128, 128, 0.1); /* 軽く背景色をつける */
 }
 
-/* --- ブログリスト用のスタイルを修正 --- */
+/* --- ブログリスト用のスタイル --- */
 
 .blogList {
   list-style: none;
@@ -182,7 +173,6 @@
   display: flex; /* Flexbox を使用 */
   flex-direction: column; /* 縦方向に並べる */
   gap: 20px; /* カード間の垂直方向の隙間 */
-  /* grid-template-columns は削除 */
 }
 
 .blogListItem {
@@ -197,20 +187,17 @@
   overflow: hidden;
   background-color: var(--sys-color-surface-container-low);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  /* height: 100% は削除 (Grid用だったため) */
-  /* display: flex, flex-direction: column は削除 (カード内部で設定) */
 }
 
 .articleCardLink:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-decoration: none; /* ホバー時も下線なしを明示 */
+  text-decoration: none;
 }
 
 .articleCard {
   display: flex; /* カード内部を Flexbox でレイアウト */
   flex-direction: row; /* 画像と詳細を横方向に並べる */
-  /* height: 100% は削除 */
   align-items: stretch; /* 子要素の高さを揃える */
 }
 
@@ -219,7 +206,6 @@
   flex-shrink: 0; /* 画像が縮まないようにする */
   aspect-ratio: 16 / 9; /* アスペクト比は維持 */
   overflow: hidden;
-  /* width: 100% は削除 */
 }
 
 .articleImage img {
@@ -268,7 +254,7 @@
   font-size: 1.1em;
 }
 
-/* --- フッター用のスタイルを追加 --- */
+/* --- フッター用のスタイル --- */
 .siteFooter {
   margin-top: 60px;
   padding: 20px 0;
@@ -285,16 +271,6 @@
   opacity: 0.8; /* 少し薄く表示 */
 }
 
-/* --- 元のpage.module.cssのスタイルは削除またはコメントアウト --- */
-/*
-.page { ... }
-.main { ... }
-/* .logo { ... } */ /* layout.tsx で使っているので残すか確認 */
-/* .ctas { ... }
-.primary { ... }
-.secondary { ... }
-.footer { ... }
-*/
 
 /* --- ブログ詳細ページ用のスタイル --- */
 .articleMetaSingle {
@@ -320,7 +296,7 @@
 .articleEyecatchSingle img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px; /* 少し角を丸める */
+  border-radius: 4px;
 }
 
 .metaItemsSingle {
@@ -332,7 +308,7 @@
   justify-content: center; /* 中央揃え */
 }
 
-/* .metaItem は共通スタイルを使用 */
+/* .metaItem は共通スタイル */
 .metaItem .material-symbols-outlined {
   font-size: 1.1em;
   vertical-align: middle; /* アイコンとテキストの縦位置調整 */
@@ -344,7 +320,7 @@
   line-height: 1.8; /* 本文の行間を少し広げる */
 }
 
-/* microCMSリッチエディタの基本的なスタイル調整 (必要に応じて追加) */
+/* microCMSリッチエディタの基本的なスタイル調整 */
 .postContent h2 {
   margin-top: 2.5em;
   margin-bottom: 1em;
@@ -364,7 +340,7 @@
 }
 
 .postContent a {
-  color: var(--sys-color-primary); /* リンク色をアクセントカラーに */
+  color: var(--sys-color-primary);
   text-decoration: underline;
 }
 .postContent a:hover {
