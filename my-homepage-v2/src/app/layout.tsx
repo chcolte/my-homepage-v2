@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-// import type { Metadata } from "next"; // コメントアウトまたは削除
 import { Inter } from "next/font/google";
 import Image from "next/image";
-import Link from 'next/link'; // Link コンポーネントをインポート
+import Link from 'next/link';
 import styles from "./page.module.css";
 import "./globals.css";
 
