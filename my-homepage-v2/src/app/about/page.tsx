@@ -1,16 +1,15 @@
-"use client";
-
-import { useEffect } from 'react';
 import styles from "../page.module.css";
 import aboutStyles from './about.module.css';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 const PAGE_NAME = "About";
+export const metadata: Metadata = {
+  title: `Chcolte.com / ${PAGE_NAME}`,
+  description: 'サイト管理者の紹介ページです。',
+};
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = `Chcolte.com / ${PAGE_NAME}`;
-  }, []);
 
   return (
       <div className={styles.container}>
