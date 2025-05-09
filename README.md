@@ -10,8 +10,8 @@
 - microCMSにアカウントを作る
 - その中に以下の値を入れる
 ```
-MICROCMS_SERVICE_DOMAIN=domain
-MICROCMS_API_KEY=0123456789abcde
+MICROCMS_SERVICE_DOMAIN=yourdomain
+MICROCMS_API_KEY=yourAPIKey012345abcde
 ```
 - npm install
 
