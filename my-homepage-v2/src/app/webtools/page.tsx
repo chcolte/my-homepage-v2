@@ -1,15 +1,13 @@
-"use client";
-
-import { useEffect } from 'react';
 import styles from "../page.module.css";
+import { Metadata } from 'next';
 
 const PAGE_NAME = "WebTools";
+export const metadata: Metadata = {
+  title: `Chcolte.com / ${PAGE_NAME}`,
+  description: 'webToolsページです。',
+};
 
 export default function WebToolsPage() {
-  // useEffect を使ってタイトルを設定
-  useEffect(() => {
-    document.title = `Chcolte.com / ${PAGE_NAME}`;
-  }, []);
 
   return (
       <div className={styles.container}>
