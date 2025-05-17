@@ -17,6 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 }
 
 .logoContainer {
@@ -398,4 +399,86 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 4px;
+}
+
+/* モバイルメニューボタンのスタイル */
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--sys-color-on-surface-variant);
+  z-index: 1001;
+  position: fixed;
+  top: 1.8rem; /* ヘッダーからの距離 */
+  right: 1rem; /* 右端からの距離 */
+}
+
+.mobileMenuButton .material-symbols-outlined {
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+/* メニューが開いている時のボタンの回転 */
+.mobileMenuButton.active .material-symbols-outlined {
+  transform: rotate(90deg);
+}
+
+/* ナビゲーションリストのスタイル */
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+/* モバイル対応のスタイル */
+@media (max-width: 768px) {
+  .mobileMenuButton {
+    display: block;
+  }
+
+  .navList {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--sys-color-surface-container-high);
+    flex-direction: column;
+    padding: 5rem 1rem 1rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .navList.active {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .navList li {
+    margin: 1rem 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .navList.active li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* メニュー項目の表示を少しずつ遅延させる */
+  .navList li:nth-child(1) { transition-delay: 0.1s; }
+  .navList li:nth-child(2) { transition-delay: 0.2s; }
+  .navList li:nth-child(3) { transition-delay: 0.3s; }
+  .navList li:nth-child(4) { transition-delay: 0.4s; }
+  .navList li:nth-child(5) { transition-delay: 0.5s; }
 }

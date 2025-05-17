@@ -18,6 +18,7 @@ export default function RootLayout({
   const defaultTheme = 'theme-1b'; // サーバーレンダリング時のデフォルト
   const [theme, setTheme] = useState<string>(defaultTheme);
   const [isMounted, setIsMounted] = useState(false); // マウント状態
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // マウント後に localStorage からテーマを読み込み、マウント状態を true にする
   useEffect(() => {
@@ -64,6 +65,33 @@ export default function RootLayout({
   const currentThemeForButton = isMounted ? theme : defaultTheme;
   const buttonLabel = currentThemeForButton === 'theme-1a' ? "ダークモードに切り替え" : "ライトモードに切り替え";
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    // メニューの開閉に応じてbodyにクラスを追加/削除
+    document.body.classList.toggle('menuOpen');
+  };
+
+  const handleMenuClick = () => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('menuOpen');
+  };
+
+  // メニューが開いている時に外部をクリックしたら閉じる
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const nav = document.querySelector(`.${styles.mainNav}`);
+      if (isMenuOpen && nav && !nav.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+        document.body.classList.remove('menuOpen');
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <html lang="ja">
       <head>
@@ -90,23 +118,28 @@ export default function RootLayout({
               </div>
             </Link>
             <nav className={styles.mainNav}>
-              <ul>
-                <li><Link href="/about">About</Link></li>
-                <li><Link href="/blog">Blog</Link></li>
-                <li><Link href="/webtools">WebTools</Link></li>
-                <li><Link href="/credits">Credits</Link></li>
+              <button 
+                className={`${styles.mobileMenuButton} ${isMenuOpen ? styles.active : ''}`}
+                onClick={toggleMenu}
+                aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
+              >
+                <span className="material-symbols-outlined">
+                  {isMenuOpen ? 'close' : 'menu'}
+                </span>
+              </button>
+              <ul className={`${styles.navList} ${isMenuOpen ? styles.active : ''}`}>
+                <li><Link href="/about" onClick={handleMenuClick}>About</Link></li>
+                <li><Link href="/blog" onClick={handleMenuClick}>Blog</Link></li>
+                <li><Link href="/webtools" onClick={handleMenuClick}>WebTools</Link></li>
+                <li><Link href="/credits" onClick={handleMenuClick}>Credits</Link></li>
                 <li className={styles.themeSwitcher}>
-                  {/* ボタンの表示内容は isMounted 状態を考慮 */}
                   <button
                     className={styles.themeToggleButton}
                     onClick={handleThemeToggle}
                     aria-label={buttonLabel}
                     title={buttonLabel}
-                    // マウントされるまでボタンを無効化する（任意）
-                    // disabled={!isMounted}
                   >
                     <span className="material-symbols-outlined">
-                      {/* isMounted をチェックしてからアイコンを決定 */}
                       {isMounted ? (currentThemeForButton === themes[0] ? 'dark_mode' : 'light_mode') : 'settings_brightness'}
                     </span>
                   </button>
