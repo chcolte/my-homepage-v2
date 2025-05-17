@@ -458,6 +458,7 @@
   }
 
   .navList.active {
+    padding-top: 5rem;
     display: flex;
     opacity: 1;
     transform: translateX(0);
